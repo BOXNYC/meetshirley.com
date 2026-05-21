@@ -1,0 +1,505 @@
+/* TOOLS */
+.visibility-hidden {
+    visibility: hidden !important;
+}
+.flex-1 {
+    flex: 1;
+}
+.p-relative {
+    position: relative;
+}
+
+/* LAYOUT */
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #faf6f3;
+    overflow: hidden;
+
+}
+
+
+article {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+
+/* STYLES */
+.list-group-item.even {
+    background-color: rgb(216, 243, 255) !important;
+}
+.list-group-item .options {
+    bottom: -1rem !important;
+    font-size: 0.75rem !important;
+    min-width: 100%;
+}
+.list-group-item .options * {
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    background-color: #faf6f3;
+    padding: 4px 8px !important;
+    border-radius: 0 0 4px 4px;
+}
+.list-group-item:hover .options {
+    visibility: visible !important;
+}
+.list-group-item.bot:hover .options {
+    display: block !important;
+}
+.list-group-item {
+    border-radius: 1rem !important;
+    border: none !important;
+    background-color: #faf6f3;
+    display: inline-block !important;
+    max-width: 60% !important;
+    min-height: 4rem;
+}
+.list-group-item.user {
+    text-align: right !important;
+    margin-left: auto !important;
+}
+.list-group-item.bot {
+    border-radius: 1rem !important;
+    background-color: #faf6f3 !important;
+}
+.list-group-item.user .options.xs {
+    white-space: nowrap;
+    left: auto !important;
+    right: 0 !important;
+    min-width: 125px;
+}
+.list-group-item.bot .options.xs {
+    white-space: nowrap;
+    min-width: 125px;
+}
+.list-group-item::after {
+    content: "";
+    position: absolute;
+    top: 1rem;
+    left: -1.5rem;
+    width: 1.5rem;
+    height: 3rem;
+    background: url("/elst-v.svg") scroll no-repeat 0 0 transparent;
+}
+.list-group-item.user::after {
+    left: auto;
+    right: -1.5rem;
+}
+.list-group-item.consec::before {
+    content: "";
+    position: absolute;
+    top: -1.5rem;
+    left: 1rem;
+    width: 3rem;
+    height: 1.5rem;
+    background: url("/elst-h.svg") scroll no-repeat 0 0 transparent;
+}
+.list-group-item.consec.user::before {
+    left: auto;
+    right: 1rem;
+}
+input[type="text"] {
+    border-radius: 2rem;
+}
+.input-group button {
+    border-top-right-radius: 2rem !important;
+    border-bottom-right-radius: 2rem !important;
+}
+
+
+#header small {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    display: inline-block;
+}
+#footer small {
+    font-size: .5rem;
+    line-height: .75rem;
+    display: inline-block;
+}
+
+
+.nowrap {
+    white-space: nowrap;
+}
+
+#header {
+    position: relative;
+}
+#header::after {
+	content: "";
+	height: 2rem;
+	width: 100%;
+	position: absolute;
+	top: 100%;
+	border-radius: 1.5rem 1.5rem 0 0;
+	background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0));
+	pointer-events: none;
+	z-index: 2;
+	left: 0;
+}
+
+article {
+	border-radius: 1.5rem;
+}
+
+
+
+#get-tickets > * {
+    margin-left: auto;
+}
+
+picture * {
+    height: 50px;
+}
+@media (min-width: 768px) {
+    picture * {
+        height: 55px;
+    }
+}
+@media (min-width: 768px) {
+    picture * {
+        height: 60px;
+    }
+}
+
+
+@media (max-width: 767px) {
+    [data-sprite][data-sprite="logo"] {
+        background-size: 230px !important;
+        background-position: -11px -127px !important;
+        color: transparent !important;
+        height: 40px;
+    }
+    #header {
+        padding: 0;
+    }
+    div#meet-shirley {
+        width: 34% !important;
+    }
+    div#get-tickets {
+        width: 66% !important;
+    }
+
+}
+
+#enter [data-sprite][data-sprite="logo"] {
+    background-size: 240px !important;
+}
+@media (min-width: 768px) {
+    #enter [data-sprite][data-sprite="logo"] {
+        background-size: 301px !important;
+        background-position: -13px -167px;
+        height: 40px;
+    }
+}
+
+article .list-group {
+    min-height: 100%;
+}
+.list-group::after {
+    content: "";
+    padding-bottom: 50%;
+    display: block;
+}
+@media (min-width: 768px) {
+    .list-group::after {
+        padding-bottom: 38%;
+    }
+}
+@media (min-width: 993px) {
+    .list-group::after {
+        display: none !important;
+    }
+    .list-group-item {
+        max-width: 30% !important;
+    }
+}
+.length-0.list-group::after {
+    display: none !important;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-1.5rem); }
+    100% { opacity: 1;    transform: translateY(0rem); }
+}
+.length-0.list-group .list-group-item:nth-child(1),
+.length-0.list-group .list-group-item:nth-child(2) {
+    opacity: 0;
+    transform: translateY(-1.5rem);
+}
+/*.length-0.list-group.user-interaction .list-group-item:nth-child(1),
+.length-0.list-group.user-interaction .list-group-item:nth-child(2) {
+    opacity: 0;
+    transform: translateY(-1.5rem);
+    animation: fadeIn 1s 0s ease-out forwards;
+}
+.length-0.list-group.user-interaction .list-group-item:nth-child(2) {
+    animation: fadeIn 1s 1s ease-out forwards;
+}*/
+[data-bubble-index].speaking {
+    opacity: 0;
+    transform: translateY(-1.5rem);
+    animation: fadeIn 1s 0s ease-out forwards;
+}
+
+@media (min-width: 993px) {
+    #main > footer {
+        position: relative;
+    }
+    form {
+        position: absolute;
+        bottom: calc(100% + .5rem);
+        right: 1.5rem;
+        background-color: #faf6f3;
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+    form::before {
+        content: "";
+        position: absolute;
+        bottom: -1.5rem;
+        right: 1rem;
+        width: 3rem;
+        height: 1.5rem;
+        background: url("/elst-h.svg") scroll no-repeat 0 0 transparent;
+    }
+}
+
+h1 {
+    font-family: serif;
+    font-weight: bold;
+    letter-spacing: -2px;;
+}
+
+video {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    object-fit: cover;
+    border-radius: 1.5rem;
+    pointer-events: none;
+    top: 0;
+    height: 100%;
+}
+video {
+	object-fit: cover;
+	object-position: center bottom;
+}
+main {
+    /*background: url("/Shirley-1--4-clips.jpg") scroll no-repeat center bottom transparent;*/
+    background: url("/shirley-sprite-square-muted.png") scroll no-repeat center bottom transparent;
+    background-size: cover;
+    border-radius: 1.5rem;
+}
+@media (orientation: portrait) {
+    main {
+        background: url("/shirley-sprite-square-muted.png") scroll no-repeat center bottom transparent;
+    }
+}
+@media (ratio: 1/1) {
+    main {
+        background: url("/shirley-sprite-square-muted.png") scroll no-repeat center bottom transparent;
+    }
+}
+@media (orientation: landscape) {
+    main {
+        background: url("/shirley-sprite-landscape-muted.png") scroll no-repeat center bottom transparent;
+    }
+}
+
+
+[data-sprite] {
+    color: transparent;
+    background: url("/sprite-v2.svg") scroll no-repeat 0 0 transparent;
+    background-size: 400px !important;
+}
+[data-sprite="logo"] {
+    background-position: -19px -213px;
+    width: 220px;
+    height: 65px;
+    margin-top: 10px;
+    min-width: 220px;
+    margin-bottom: 0;
+}
+[data-sprite="hashtag"] {
+    height: 21px;
+    background-position: -19px -19px;
+    width: 153px;
+    margin-bottom: 0;
+    display: inline-block;
+}
+[data-sprite="fb"], [data-sprite="ig"], [data-sprite="tw"], [data-sprite="td"] {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    background-position: -11px -183px;
+    margin-bottom: 1rem;
+}
+[data-sprite="ig"] {
+    background-position-x: -35px !important;
+}
+[data-sprite="tw"] {
+    background-position-x: -61px !important;
+}
+[data-sprite="td"] {
+    background-position-x: -85px !important;
+}
+[data-sprite="rated-r"] {
+    display: inline-block;
+    width: 139px;
+    height: 61px;
+    background-position: -34px -586px;
+    background-size: 700px !important;
+}
+[data-sprite="mute"] {
+    width: 65px;
+    height: 60px;
+    background-position: -20px -425px;
+    background-size: 600px !important;
+    margin-right: 5px;
+    border-radius: 50%;
+    transition: background-color 0.5s;
+}
+[data-sprite="mute"].muted {
+    background-position: -82px -425px;
+}
+
+input[type="text"] {
+    border-radius: 0.5rem;
+    box-shadow: inset 0 0 0.5rem rgba(0,0,0,0.75);
+}
+.input-group button {
+    border-top-right-radius: 0.5rem !important;
+    border-bottom-right-radius: 0.5rem !important;
+}
+
+button#prompt-btn {
+    background: linear-gradient( #5a5a5a, black);
+    color: white;
+    text-transform: uppercase;
+}
+
+
+#prompt-btn [data-vuvv] {
+    margin-bottom: 0 !important;
+}
+
+
+#enter, #alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: white;
+    color: #651009;
+    transform: translate(-50%, -50%);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+body.needs-click #root,
+body.alerted #root {
+    filter: blur(10px) saturate(1.5);
+    pointer-events: none;
+}
+#shirley-avatar {
+    width: 7rem;
+    height: 7rem;
+    margin: auto;
+    background: url("/shirley.gif") scroll no-repeat center center transparent;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+
+
+
+@keyframes fadeInAndUp {
+    0% { opacity: 0; margin-top: 1rem; }
+    100% { opacity: 1; margin-top: 0rem; }
+}
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+main.is-loading::before {
+    content: "";
+    background: url("/loading-0.gif") scroll no-repeat 98% 50% transparent;
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.25rem solid white;
+    box-shadow: 0 0.5rem 1rem black;
+    background-size: cover;
+    animation: fadeInAndUp  1s forwards;
+    z-index: 1;
+}
+main.is-loading.is-loading-1::before {
+    background: url("/loading-1.gif") scroll no-repeat 50% 50% transparent;
+}
+main.is-loading.is-loading-2::before {
+    background: url("/loading-2.gif") scroll no-repeat 50% 50% transparent;
+}
+main.is-loading.is-loading-3::before {
+    background: url("/loading-3.gif") scroll no-repeat 50% 50% transparent;
+}
+main.is-loading.is-loading-4::before {
+    background: url("/loading-4.gif") scroll no-repeat 50% 50% transparent;
+}
+main.is-loading.is-loading-5::before {
+    background: url("/loading-5.gif") scroll no-repeat 50% 50% transparent;
+}
+main.is-loading.is-loading-6::before {
+    background: url("/loading-6.gif") scroll no-repeat 50% 50% transparent;
+}
+main.is-loading::after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    border: 0.25rem solid white;
+    animation: spin 1s linear infinite;
+    border-color: transparent transparent #700000 transparent;
+    z-index: 2;
+}
+main.is-loading.trained-model-responded::before,
+main.is-loading.trained-model-responded::after {
+    display: none !important;
+}
+
+
+
+@media (max-width: 767px) {
+    .list-group-item.bot .nowrap,
+    .list-group-item.user .nowrap {
+        white-space: normal !important;
+    }
+}
+
+
+
+.bubble-link {
+    border-top: 1px solid #DDD;
+    margin-top: 0.5rem;
+    padding-top: 0.5em;
+}
+.list-group-item a {
+    text-decoration: none;
+    text-transform: none;
+    color: #700000;
+}

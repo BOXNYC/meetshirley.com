@@ -1,0 +1,131 @@
+@font-face {
+    font-family: 'Vuvvtastic Script';
+    src: url('/VuvvtasticScriptRegular.eot');
+    src: url('/VuvvtasticScriptRegular.eot?#iefix') format('embedded-opentype'),
+        url('/VuvvtasticScriptRegular.woff2') format('woff2'),
+        url('/VuvvtasticScriptRegular.woff') format('woff'),
+        url('/VuvvtasticScriptRegular.ttf') format('truetype'),
+        url('/VuvvtasticScriptRegular.svg#VuvvtasticScriptRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Vuvvtastic Square Accents';
+    src: url('/VuvvtasticSquareAccents.eot');
+    src: url('/VuvvtasticSquareAccents.eot?#iefix') format('embedded-opentype'),
+        url('/VuvvtasticSquareAccents.woff2') format('woff2'),
+        url('/VuvvtasticSquareAccents.woff') format('woff'),
+        url('/VuvvtasticSquareAccents.ttf') format('truetype'),
+        url('/VuvvtasticSquareAccents.svg#VuvvtasticSquareAccents') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @keyframes moveLeftToRight {
+    0% { left: 0%; visibility: visible; }
+    100% { left: 100%; visibility: hidden; }
+  }
+  [data-vuvv] {
+    display: inline-block;
+    /*text-align: center;*/
+    position: relative;
+    line-height: 13px;
+    margin-bottom: 1rem;
+  }
+  [data-vuvv]::before {
+    content: attr(data-vuvv);
+    display: inline-block;
+    font-family: Vuvvtastic Square Accents;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+  }
+  [data-vuvv].active::after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    height: 100%;
+    left: 0%;
+    width: 2px;
+    background-color: black;
+    animation: moveLeftToRight 200ms forwards;
+  }
+  [data-vuvv][data-length="1"].active::after {
+    animation: moveLeftToRight 20ms forwards;
+  }
+  [data-vuvv][data-length="2"].active::after {
+    animation: moveLeftToRight 30ms forwards;
+  }
+  [data-vuvv][data-length="3"].active::after {
+    animation: moveLeftToRight 80ms forwards;
+  }
+  [data-vuvv][data-length="4"].active::after {
+    animation: moveLeftToRight 130ms forwards;
+  }
+  [data-vuvv][data-length="5"].active::after {
+    animation: moveLeftToRight 190ms forwards;
+  }
+  [data-vuvv][data-length="6"].active::after {
+    animation: moveLeftToRight 240ms forwards;
+  }
+  [data-vuvv][data-length="7"].active::after {
+    animation: moveLeftToRight 270ms forwards;
+  }
+  [data-vuvv][data-length="8"].active::after {
+    animation: moveLeftToRight 310ms forwards;
+  }
+  [data-vuvv][data-length="9"].active::after {
+    animation: moveLeftToRight 360ms forwards;
+  }
+  [data-vuvv][data-length="10"].active::after {
+    animation: moveLeftToRight 410ms forwards;
+  }
+  [data-vuvv]::before {
+    content: attr(data-vuvv);
+    display: inline-block;
+    /*font-family: 'Vuvvtastic Script';*/
+    font-family: 'Vuvvtastic Square Accents';
+    font-weight: normal;
+    font-style: normal;
+  }
+  body.block [data-vuvv]::before {
+    font-family: 'Vuvvtastic Square Accents';
+  }
+
+.user [data-vuvv]::before,
+.user br {
+    display: none !important;
+}
+.user [data-vuvv] {
+  margin-bottom: 0 !important;
+}
+.user {
+  padding-bottom: 1.5rem !important;
+} 
+
+.bot:not(.in-vuvv) [data-vuvv]::before,
+.bot:not(.in-vuvv) br {
+  display: none !important;
+}
+.bot:not(.in-vuvv) [data-vuvv] {
+  margin-bottom: 0 !important;
+}
+.bot {
+  padding-bottom: 1.5rem !important;
+}
+.in-vuvv [data-vuvv] br {
+  display: none;
+}
+.in-vuvv [data-vuvv] {
+  font-size: 0;
+  margin-bottom: 0 !important;
+}
+
+.shirley-last-response:not(.in-vuvv) [data-vuvv] {
+  display: none;
+}
+.shirley-last-response [data-vuvv].active:not(.in-vuvv) {
+  display: inline-block;
+}

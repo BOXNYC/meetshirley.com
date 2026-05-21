@@ -1,0 +1,8 @@
+{
+    "AI": {
+        "is2Pass": true
+    },
+    "UX": {
+        "delayTranslationSeconds": 1
+    }
+}
