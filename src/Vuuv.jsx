@@ -104,7 +104,7 @@ class Vuvv {
         .catch(error => { console.log(error) })
     }
     static progress( timeSeconds, timepoints, $container ) {
-        console.log('timepoints', timepoints)
+        // console.log('timepoints', timepoints)
         const $els = $container.querySelectorAll('[data-vuvv]')
         $els.forEach(($el, index) => {
             const elTimeSeconds = timepoints[index].timeSeconds

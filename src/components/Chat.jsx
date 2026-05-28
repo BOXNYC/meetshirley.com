@@ -1,19 +1,20 @@
 import { useEffect, useState, useContext, useRef } from 'react'
-import { Configuration, OpenAIApi } from 'openai'
+import { OpenAI } from 'openai'
 import { Conversation } from './Conversation'
 import { PromptForm } from './PromptForm'
-import { client } from "@gradio/client"
 import Vuvv from '../Vuuv'
 import { PromptInput, Article, DB, Video, addEnterBtn } from  '../Chat'
 import {InputFilter, InputFilterType} from '../InputFilter'
 import settingsContext  from '../settingsContext'
 import useMediaQuery from '../mediaQuery'
 
-// Open AI
-const apiKey = import.meta.env.VITE_OPENID_API_KEY
-const config = new Configuration({ apiKey })
-delete config.baseOptions.headers['User-Agent'];
-const openai = new OpenAIApi(config)
+const openai = new OpenAI({
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true,
+})
+
+const SHIRLEY_FILE_ID = 'file-RcKfUSRcwbp5Uf1DiU5nU4'
+const LANDSCAPE_FILE_ID = 'file-QLKQJAPeVAkC3fFCr8ScmW'
 
 class Speak {
   static bubbleIndex( index, delayTranslationSeconds ) {
@@ -172,12 +173,23 @@ function Chat() {
     })
     
     async function run(question) {
-      const app = await client("https://boxnyc-shirley.hf.space/");
-      const result = await app.predict("/predict", [		
-        `Pretend to be Shirley. How would Shirley respond to the question "${question}"?`,
-        import.meta.env.VITE_API_TOKEN
-      ]);
-      return result?.data
+      const response = await openai.responses.create({
+        model: 'gpt-4o',
+        input: [
+          {
+            role: 'user',
+            content: [
+              {
+                type: 'input_text',
+                text: `Pretend to be Shirley. How would Shirley respond to the question "${question}"?`,
+              },
+              { type: 'input_file', file_id: SHIRLEY_FILE_ID },
+              { type: 'input_file', file_id: LANDSCAPE_FILE_ID },
+            ],
+          },
+        ],
+      })
+      return [response.output_text]
     }
 
     console.log('Trained prompt (altered)', q)
@@ -269,7 +281,7 @@ function Chat() {
       const untrainedPrompt = `${prefix} ${adjectives.join(' ')} ${suffix} ${action}: "${answer}"`.trim()
       console.log('Untrained prompt', untrainedPrompt)
 
-      openai.createChatCompletion({
+      openai.chat.completions.create({
         model: "gpt-4",
         messages: [{role: "user", content: untrainedPrompt}],
         temperature
@@ -279,8 +291,8 @@ function Chat() {
         setTrainedModelResponded(v=>{return false})
         setShowLoremVuvv(v=>{return false})
         Article.scrollDown()
-        
-        let funnyAnswer = res.data.choices[0].message.content
+
+        let funnyAnswer = res.choices[0].message.content
         funnyAnswer = funnyAnswer.replace(/vuvvish|vuvv\-ish|vuvv\-ese|vuvv\-nese|vuvvese/ig, 'Vuvv')
         funnyAnswer = funnyAnswer.replace(/for us humans/gi, 'for you humans')
         console.log('Untrained response', funnyAnswer)

@@ -1,8 +1,8 @@
 {
   "name": "lwih",
-  "homepage": "https://lwih.box.biz",
+  "homepage": "https://meetshirley.com/",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.0",
-    "openai": "^3.3.0",
+    "openai": "^4.65.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
