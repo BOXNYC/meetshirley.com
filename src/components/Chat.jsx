@@ -306,11 +306,11 @@ function Chat() {
         })
         PromptInput.enabled = true
         // Save
-        const today = new Date(),
+        /* const today = new Date(),
               date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
         DB.insert({
           q, funnyAnswer, date
-        });
+        }); */
       })
       
     })
