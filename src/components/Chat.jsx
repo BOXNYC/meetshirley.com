@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext, useRef } from 'react'
-import { OpenAI } from 'openai'
 import { Conversation } from './Conversation'
 import { PromptForm } from './PromptForm'
 import Vuvv from '../Vuuv'
@@ -8,13 +7,6 @@ import {InputFilter, InputFilterType} from '../InputFilter'
 import settingsContext  from '../settingsContext'
 import useMediaQuery from '../mediaQuery'
 
-const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true,
-})
-
-const SHIRLEY_FILE_ID = 'file-RcKfUSRcwbp5Uf1DiU5nU4'
-const LANDSCAPE_FILE_ID = 'file-QLKQJAPeVAkC3fFCr8ScmW'
 
 class Speak {
   static bubbleIndex( index, delayTranslationSeconds ) {
@@ -173,23 +165,14 @@ function Chat() {
     })
     
     async function run(question) {
-      const response = await openai.responses.create({
-        model: 'gpt-4o',
-        input: [
-          {
-            role: 'user',
-            content: [
-              {
-                type: 'input_text',
-                text: `Pretend to be Shirley. How would Shirley respond to the question "${question}"?`,
-              },
-              { type: 'input_file', file_id: SHIRLEY_FILE_ID },
-              { type: 'input_file', file_id: LANDSCAPE_FILE_ID },
-            ],
-          },
-        ],
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'trained', question }),
       })
-      return [response.output_text]
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'API error')
+      return [data.outputText]
     }
 
     console.log('Trained prompt (altered)', q)
@@ -221,7 +204,7 @@ function Chat() {
       const quoteSep = answer.split('"')
       if ( quoteSep.length >= 3 ) {
         answer = quoteSep[1]
-        if ( quoteSep.length==3 && answer.trim().match(/\?$/ig) )
+        if ( quoteSep.length==3 && answer.trim().match(/\?$/ig) && quoteSep[2].trim().length > 0 )
           answer = quoteSep[2]
       }
 
@@ -281,18 +264,18 @@ function Chat() {
       const untrainedPrompt = `${prefix} ${adjectives.join(' ')} ${suffix} ${action}: "${answer}"`.trim()
       console.log('Untrained prompt', untrainedPrompt)
 
-      openai.chat.completions.create({
-        model: "gpt-4",
-        messages: [{role: "user", content: untrainedPrompt}],
-        temperature
-      }).then(res=>{
+      fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'rephrase', prompt: untrainedPrompt, temperature }),
+      }).then(r => r.json()).then(res=>{
 
         // Load helper
         setTrainedModelResponded(v=>{return false})
         setShowLoremVuvv(v=>{return false})
         Article.scrollDown()
 
-        let funnyAnswer = res.choices[0].message.content
+        let funnyAnswer = res.content
         funnyAnswer = funnyAnswer.replace(/vuvvish|vuvv\-ish|vuvv\-ese|vuvv\-nese|vuvvese/ig, 'Vuvv')
         funnyAnswer = funnyAnswer.replace(/for us humans/gi, 'for you humans')
         console.log('Untrained response', funnyAnswer)

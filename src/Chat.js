@@ -24,7 +24,7 @@ export class PromptInput {
   
   export class DB {
     static insert( data, onSuccess ) {
-      if ( typeof data !== 'string' ) data = JSON.stringify(data)
+      /* if ( typeof data !== 'string' ) data = JSON.stringify(data)
       onSuccess = onSuccess || function(){}
       const requestOptions = {
         method: 'POST',
@@ -37,7 +37,7 @@ export class PromptInput {
       fetch('https://lwih.box.biz/api/', requestOptions)
         .then(response => response.json())
         .then(data => onSuccess(data))
-        .catch(err=>console.error(err))
+        .catch(err=>console.error(err)) */
     }
   }
   
